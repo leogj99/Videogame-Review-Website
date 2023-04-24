@@ -1,0 +1,25 @@
+<!DOCTYPE html> 
+<html> 
+  <head> 
+    <title>All Players</title>
+    <link href="static/search_title.css" rel="stylesheet" type="text/css">
+  </head> 
+  <body> 
+    <h1 class="all_games">Games</h1>
+    <p>Showing all the games in the database</p>
+    <button id="button2" type="button" onclick="location.href='/'">Menu</button>
+    {% if games %}
+    <ul>
+        {% for game in games %}
+              <div class="player">
+                <strong>Name:</strong> {{game[0]}} <br>
+                <strong>Genre:</strong> {{game[1]}} <br>
+              </div>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% if error_message %}
+      <p style="color: red;">{{ error_message }}</p>
+    {% endif %}
+  </body> 
+</html>

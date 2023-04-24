@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Add Player</title>
+    <link href="static/search_title.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <h1 class="add_players"> Add a Player </h1>
+    <p> Enter information in all the fields to add a player. All fields need to be filled to successfully enter the player to the database.</p>
+    <form form action="/add_player" method="POST">
+        <div class="input_margin">
+            <label> Player Fullname:</label> 
+            <input class= "input_boxes" type="text" name="player_fullname"> <br>
+            <label> Email:</label> 
+            <input class= "input_boxes" type="text" name="email"> <br>
+            <label> Gamertag:</label> 
+            <input class= "input_boxes" type="text" name="gamertag"> <br>
+            <button id="button1" type="submit"> Submit </button>
+            <button id="button2" type="button" onclick="location.href='/'">Menu</button>
+        </div>
+    </form>
+    {% if error_message %}
+      <p style="color: red;">{{ error_message }}</p>
+    {% endif %}
+    {% if success_message %}
+      <p> {{success_message}}</p>
+    {% endif %}
+      
+  </body>
+</html>

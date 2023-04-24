@@ -1,0 +1,115 @@
+body {
+  margin-left: 20px;
+  left: 20px;
+}
+
+.games_by_genre {
+  background-color: rgb(43, 90, 62);
+  position: relative;
+  margin: 0;
+  height: 100px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  font-size: 40px;
+  font-family: 'Courier New', Courier, monospace;
+  color: white;
+  text-align: center;
+}
+
+.players_by_genre {
+  background-color: rgb(43, 10, 74);
+  position: relative;
+  margin: 0;
+  height: 100px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  font-size: 40px;
+  font-family: 'Courier New', Courier, monospace;
+  color: white;
+  text-align: center;
+}
+
+.all_players {
+  background-color: rgb(27, 88, 141);
+  position: relative;
+  margin: 0;
+  height: 100px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  font-size: 40px;
+  font-family: 'Courier New', Courier, monospace;
+  color: white;
+  text-align: center;
+}
+
+.all_games {
+  background-color: rgb(242, 210, 3);
+  position: relative;
+  margin: 0;
+  height: 100px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  font-size: 40px;
+  font-family: 'Courier New', Courier, monospace;
+  color: rgb(5, 0, 0);
+  text-align: center;
+}
+
+.add_players {
+  background-color: rgb(223, 16, 16);
+  position: relative;
+  margin: 0;
+  height: 100px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  font-size: 40px;
+  font-family: 'Courier New', Courier, monospace;
+  color: white;
+  text-align: center;
+}
+
+.player {
+  width: 300px;
+  float: left;
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid #ccc;
+}
+
+.input_boxes {
+  display: inline-block;
+  width: 150px;
+}
+.input_margin {
+  padding: 20px;
+  border: 5px solid rgb(223, 16, 16);
+  width: 350px;
+}
+
+label {
+  display: inline-block;
+  width: 150px;
+  text-align: left;
+}
+
+li {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 300px;
+}
+
+
+h2 {
+  font-size: 20px;
+  margin-top: 30px;
+}
+
+p {
+  margin-bottom: 20px;
+}

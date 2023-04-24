@@ -1,0 +1,44 @@
+<!DOCTYPE html> 
+<html> 
+  <head> 
+    <title> Search Game </title>
+    <link href="static/search_title.css" rel="stylesheet" type="text/css">
+  </head> 
+  <body> 
+    <h1 class="games_by_genre"> Search Games by Genre </h1>
+    <p> List of game genres: MMORPG, MOBA, Shooter, Survival, Sandbox, Action-Adventure, 
+        Hero Shooter, Battle Royale, Collectible Card Game, Action RPG, Tactical Shooter <p/>
+    <form action="/search_game" method="POST">
+      <div>
+        <label> Select game genre: </label>
+        <select name="game_genre">
+        <option value="MMORPG">MMORPG</option>
+        <option value="MOBA">MOBA</option>
+        <option value="Shooter">Shooter</option>
+        <option value="Survival">Survival</option>
+        <option value="Sandbox">Sandbox</option>
+        <option value="Action-Adventure">Action-Adventure</option>
+        <option value="Hero Shooter">Hero Shooter</option>
+        <option value="Battle Royale">Battle Royale</option>
+        <option value="Collectible Card Game">Collectible Card Game</option>
+        <option value="Action RPG">Action RPG</option>
+        <option value="Tactical Shooter">Tactical Shooter</option>
+        </select>
+        <button id="button1" type="submit"> Search </button>
+        <button id="button2" type="button" onclick="location.href='/'">Menu</button>
+      </div>
+    </form>
+    {% if error_message %}
+      <p style="color: red;">{{ error_message }}</p>
+    {% endif %}
+    {% if games %}
+    <h2>Games found:</h2>
+    <ul>
+        {% for game in games %}
+            <li>{{game[0]}}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+  </body> 
+</html>
