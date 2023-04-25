@@ -4,10 +4,10 @@ from DB import DB
 
 #------Connection of database to flask website------
 app = Flask(__name__)        
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'Calzones12!'
-app.config['MYSQL_DB'] = 'website'
+app.config['MYSQL_HOST'] = 'us-cdbr-east-06.cleardb.net'
+app.config['MYSQL_USER'] = 'b3f71e4813c2dc'
+app.config['MYSQL_PASSWORD'] = '493498f4'
+app.config['MYSQL_DB'] = 'heroku_7aeafb2d9c67f56'
 #---------------------------------------------------
 mysql = MySQL(app)
 database = DB(mysql)
