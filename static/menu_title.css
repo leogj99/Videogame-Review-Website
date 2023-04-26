@@ -1,28 +1,67 @@
 .main_page {
-  background-color: black;
-  position: relative;
-  margin: 0;
-  height: 100px;
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  font-size: 40px;
-  font-family:'Courier New', Courier, monospace;
-  color: white;
   text-align: center;
+  color: white;
+  font-size: 70px;
+  margin-top: 50px;
+}
+
+.button_container {
+  text-align: center;
+  margin-top: 50px;
 }
 
 .button {
-  -webkit-border-radius: 3;
-  -moz-border-radius: 3;
-  border-radius: 3px;
-  -webkit-box-shadow: 0px 1px 4px #666666;
-  -moz-box-shadow: 0px 1px 4px #666666;
-  box-shadow: 0px 1px 4px #666666;
-  font-family: Courier New;
-  color: #fafafa;
-  font-size: 25px;
-  background: #09334f;
-  padding: 10px 20px 10px 20px;
-  text-decoration: none;
+  font-size: 30px;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 10px;
+  background-color: #f1f1f1;
+  color: black;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+}
+
+.button:hover {
+  transform: scale(1.1);
+}
+
+.add_button {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.view_button {
+  background-color: #008CBA;
+  color: white;
+}
+
+.search_button {
+  background-color: #f44336;
+  color: white;
+}
+
+.welcome_box {
+  background-color: rgba(0, 0, 0, 0.8);
+  margin: 100px;
+  padding: 20px;
+  position: relative;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.welcome_box h2 {
+  text-align: center;
+  color: #fff;
+  margin-bottom: 20px;
+  font-size: 36px;
+  font-weight: 700;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.welcome_box p {
+  color: #fff;
+  margin: 20px 0;
+  font-size: 24px;
+  line-height: 1.5;
 }
