@@ -4,10 +4,10 @@ from DB import DB
 
 #------Connection of database to flask website------
 app = Flask(__name__)        
-app.config['MYSQL_HOST'] = 'us-cdbr-east-06.cleardb.net'
-app.config['MYSQL_USER'] = 'b3f71e4813c2dc'
-app.config['MYSQL_PASSWORD'] = '493498f4'
-app.config['MYSQL_DB'] = 'heroku_7aeafb2d9c67f56'
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = 'Calzones12!'
+app.config['MYSQL_DB'] = 'website'
 #---------------------------------------------------
 mysql = MySQL(app)
 database = DB(mysql)
@@ -25,6 +25,7 @@ def searchGame():
 
     return render_template('search_game.html')
 
+
 @app.route("/search_player", methods= ['post', 'get'])
 def searchPlayer():
     if request.method == 'POST':
@@ -37,6 +38,7 @@ def searchPlayer():
             return render_template('search_player.html', error_message=error_message)
 
     return render_template('search_player.html')
+
 
 @app.route("/add_player", methods=['get', 'post'])
 def newPlayer():
@@ -67,7 +69,7 @@ def newPlayer():
 
         # Check if any of the fields are missing
         if not fullname or not email or not gamertag:
-            error_message = "Please enter all fields to add a player."
+            error_message = "Please enter all fields to add a new player."
 
         # If all fields are entered, add the new player to the database
         else:
@@ -77,6 +79,32 @@ def newPlayer():
 
     return render_template('add_player.html', error_message=error_message)
 
+
+@app.route("/add_game", methods=['get', 'post'])
+def newGame():
+    error_message = None
+    
+    if request.method == 'POST':
+        name = request.form.get('name')
+        genre = request.form.get('genre')
+        
+        existing_name = database.findMatch("GAME_NAME", "GAMES", name)
+        if existing_name:
+            error_message = f"Game name '{name}' already exists in the database."
+            return render_template('add_game.html', error_message=error_message)
+        
+        # Check if any of the fields are missing
+        if not name:
+            error_message = "Please enter all fields to add a new game."
+        # If all fields are entered, add the new player to the database
+        else:
+            database.addGame(name, genre)
+            success_message = "Game added successfully!"
+            return render_template('add_game.html', success_message=success_message)
+
+    return render_template('add_game.html', error_message=error_message)
+        
+        
 @app.route("/view_all_players", methods=['get', 'post'])
 def listPlayers():
     result = database.displayPlayers()
@@ -85,6 +113,7 @@ def listPlayers():
     else:
         error_message = f"No players found in database."
         return render_template('view_all_players.html', error_message=error_message)
+    
 
 @app.route("/view_all_games", methods=['get', 'post'])  
 def listGames():
@@ -94,6 +123,7 @@ def listGames():
     else:
         error_message = f"No games found in database."
         return render_template('view_all_games.html', error_message=error_message)
+    
        
 #----Handles all redirects to the other pages----
 @app.route("/redirect/<redirect_type>")
@@ -106,6 +136,8 @@ def allRedirects(redirect_type):
         return redirect("/")
     elif redirect_type == "add_player":
         return redirect("/add_player")
+    elif redirect_type == "add_game":
+        return redirect("/add_game")
     elif redirect_type == "view_all_players":
         return redirect("/view_all_players")
     elif redirect_type == "view_all_games":

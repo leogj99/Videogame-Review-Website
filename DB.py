@@ -43,6 +43,22 @@ class DB:
             print("Error adding player to database")
             return False
         
+    def addGame(self, name, genre):
+        found = False
+        while not found: # generates random number between 0 and 999 until it generates one that is not in the database already
+            id = random.randint(0,999)
+            result = self.findMatch("GAME_ID", "GAMES", id)
+            if not result:
+                found = True
+        try:
+            self.cur = self.mysql.connection.cursor()
+            self.cur.execute(f"INSERT INTO GAMES VALUES ({id}, '{name}', '{genre}')")
+            self.mysql.connection.commit()
+            return True
+        except Exception:
+            print("Error adding game to database")
+            return False
+        
     def findMatch(self, attribute, table, input):
         if input is not None:
             self.cur = self.mysql.connection.cursor()

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Add Game</title>
+    <link href="static/search_title.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <h1 class="add_games"> Add a Game </h1>
+    <p> Enter information in all the fields to add a game. All fields need to be filled to successfully enter the game to the database.</p>
+    <form form action="/add_game" method="POST">
+        <div class="input_margin">
+            <label> Game name:</label> 
+            <input class= "input_boxes" type="text" name="name"> <br>
+            <label> Genre:</label> 
+            <select name="genre">
+            <option value="MMORPG">MMORPG</option>
+            <option value="MOBA">MOBA</option>
+            <option value="Shooter">Shooter</option>
+            <option value="Survival">Survival</option>
+            <option value="Sandbox">Sandbox</option>
+            <option value="Action-Adventure">Action-Adventure</option>
+            <option value="Hero Shooter">Hero Shooter</option>
+            <option value="Battle Royale">Battle Royale</option>
+            <option value="Collectible Card Game">Collectible Card Game</option>
+            <option value="Action RPG">Action RPG</option>
+            <option value="Tactical Shooter">Tactical Shooter</option>
+            </select> <br>
+            <button id="button1" type="submit"> Submit </button>
+            <button id="button2" type="button" onclick="location.href='/'">Menu</button>
+        </div>
+    </form>
+    {% if error_message %}
+      <p style="color: red;">{{ error_message }}</p>
+    {% endif %}
+    {% if success_message %}
+      <p> {{success_message}}</p>
+    {% endif %}
+      
+  </body>
+</html>
