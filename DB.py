@@ -4,6 +4,7 @@ import random
 class DB:
     def __init__(self, mysql):
         self.mysql = mysql
+        
 
     def gameByGenre(self, genre):
         self.cur = self.mysql.connection.cursor()
@@ -13,6 +14,7 @@ class DB:
             return None
         else:
             return result
+        
     
     def playerByGenre(self, genre):
         self.cur = self.mysql.connection.cursor()
@@ -27,9 +29,11 @@ class DB:
         else:
             return result
         
+        
     def addPlayer(self, fullname, email, gamertag):
         found = False
-        while not found: # generates random number between 0 and 999 until it generates one that is not in the database already
+        # Generates random id for the new player
+        while not found: 
             id = random.randint(0,999)
             result = self.findMatch("PLAYER_ID", "PLAYERS", id)
             if not result:
@@ -43,9 +47,11 @@ class DB:
             print("Error adding player to database")
             return False
         
+        
     def addGame(self, name, genre):
         found = False
-        while not found: # generates random number between 0 and 999 until it generates one that is not in the database already
+        # Generates random id for the new game
+        while not found: 
             id = random.randint(0,999)
             result = self.findMatch("GAME_ID", "GAMES", id)
             if not result:
@@ -58,7 +64,41 @@ class DB:
         except Exception:
             print("Error adding game to database")
             return False
+    
+    
+    def addReview(self, player_name, game_name, review_comment, rating):
+        found = False
+        # Generates random id for the review
+        while not found:
+            id = random.randint(0,999)
+            result = self.findMatch("GAME_ID", "GAMES", id)
+            if not result:
+                found = True
+                
+        self.cur = self.mysql.connection.cursor()
         
+        # Find the id of the player based on the name 
+        self.cur.execute(f"SELECT PLAYER_ID FROM PLAYERS WHERE PLAYER_NAME = '{player_name}'")
+        player_id = self.cur.fetchone()
+        
+        # Find the id of the game based on the name 
+        self.cur.execute(f"SELECT GAME_ID FROM GAMES WHERE GAME_NAME = '{game_name}'")
+        game_id = self.cur.fetchone()
+        
+        # Try to add the new review with the inputs
+        try:
+            self.cur.execute(f"INSERT INTO REVIEWS VALUES ({id}, {player_id}, {game_id}, '{review_comment})', '{rating}'")
+            self.mysql.connection.commit()
+            return True
+        except Exception:
+            print("Error adding review to database")
+            return False
+        
+        
+            
+            
+
+    
     def findMatch(self, attribute, table, input):
         if input is not None:
             self.cur = self.mysql.connection.cursor()
@@ -70,6 +110,7 @@ class DB:
                 return result
         else:
             return None
+        
     
     def displayPlayers(self):
         self.cur = self.mysql.connection.cursor()
@@ -80,9 +121,25 @@ class DB:
         else:
             return result
         
+        
     def displayGames(self):
         self.cur = self.mysql.connection.cursor()
         self.cur.execute("SELECT GAME_NAME, GENRE FROM GAMES")
+        result = self.cur.fetchall()
+        if not result:
+            return None
+        else:
+            return result
+        
+    
+    def displayReviews(self):
+        self.cur = self.mysql.connection.cursor()
+        self.cur.execute(f"SELECT p.PLAYER_FULLNAME, g.GAME_NAME, p.GAMERTAG, r.REVIEW_COMMENT , r.RATING "
+                         f"FROM REVIEWS r "
+                         f"JOIN PLAYERS p "
+                         f"ON p.PLAYER_ID = r.PLAYER_ID "
+                         f"JOIN GAMES g "
+                         f"ON g.GAME_ID = r.GAME_ID")
         result = self.cur.fetchall()
         if not result:
             return None

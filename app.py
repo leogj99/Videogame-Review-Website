@@ -9,6 +9,11 @@ app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'Calzones12!'
 app.config['MYSQL_DB'] = 'website'
 #---------------------------------------------------
+'''app.config['MYSQL_HOST'] = 'us-cdbr-east-06.cleardb.net'
+app.config['MYSQL_USER'] = 'b3f71e4813c2dc'
+app.config['MYSQL_PASSWORD'] = '493498f4'
+app.config['MYSQL_DB'] = '`heroku_7aeafb2d9c67f56`'''
+#---------------------------------------------------
 mysql = MySQL(app)
 database = DB(mysql)
 #---------------------------------------------------
@@ -103,6 +108,11 @@ def newGame():
             return render_template('add_game.html', success_message=success_message)
 
     return render_template('add_game.html', error_message=error_message)
+
+
+@app.route("/add_review")
+def newReview():
+    return render_template("add_review.html")
         
         
 @app.route("/view_all_players", methods=['get', 'post'])
@@ -123,7 +133,18 @@ def listGames():
     else:
         error_message = f"No games found in database."
         return render_template('view_all_games.html', error_message=error_message)
+ 
+
+@app.route("/view_all_reviews", methods=['get', 'post'])  
+def listReviews():
+    result = database.displayReviews()
+    if result:
+        return render_template("view_all_reviews.html", reviews=result)
+    else:
+        error_message = f"No games found in database."
+        return render_template("view_all_reviews.html", error_message= error_message)
     
+      
        
 #----Handles all redirects to the other pages----
 @app.route("/redirect/<redirect_type>")
@@ -138,10 +159,14 @@ def allRedirects(redirect_type):
         return redirect("/add_player")
     elif redirect_type == "add_game":
         return redirect("/add_game")
+    elif redirect_type == "add_review":
+        return redirect("/add_review")
     elif redirect_type == "view_all_players":
         return redirect("/view_all_players")
     elif redirect_type == "view_all_games":
         return redirect("/view_all_games")
+    elif redirect_type == "view_all_reviews":
+        return redirect("/view_all_reviews")
     else:
         return "Invalid redirect type"
 #------------------------------------------------

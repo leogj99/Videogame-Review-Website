@@ -95,6 +95,13 @@ body {
   border: 1px solid #ccc;
 }
 
+.review {
+  float: left;
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid #ccc;
+}
+
 .input_boxes {
   display: inline-block;
   width: 150px;

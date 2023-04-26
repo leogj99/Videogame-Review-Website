@@ -1,0 +1,28 @@
+<!DOCTYPE html> 
+<html> 
+  <head> 
+    <title>All Reviews</title>
+    <link href="static/search_title.css" rel="stylesheet" type="text/css">
+  </head> 
+  <body> 
+    <h1>Reviews</h1>
+    <p>Showing all the reviews in the database</p>
+    <button id="button" type="button" onclick="location.href='/'">Menu</button>
+    {% if reviews %}
+    <ul>
+        {% for review in reviews %}
+              <div class="review">
+                <strong>Player name:</strong> {{review[0]}} <br>
+                <strong>Game name:</strong> {{review[1]}} <br>
+                <strong>Gamertag:</strong> {{review[2]}} <br>
+                <strong>Review:</strong> {{review[3]}} <br>
+                <strong>Rating:</strong> {{review[4]}} <br>
+              </div>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% if error_message %}
+      <p style="color: red;">{{ error_message }}</p>
+    {% endif %}
+  </body> 
+</html>
