@@ -1,9 +1,51 @@
-<!DOCTYPE html> 
-<html> 
-  <head> 
-    <title> Add Review </title>     
-  </head> 
-  <body> 
-    <h1> Add Review </h1>
-  </body> 
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Add Review</title>
+    <link href="static/search_title.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <h1 class="add_review">Add Review</h1>
+    <p> Enter information in all the fields to add a review. All fields need to be filled to successfully enter the review to the database.</p>
+    <div class="input_margin_reviews">
+      <form form action="/add_review" method="POST">
+        <label>Player name:</label>
+        <select class="input_boxes" name= "chosen_name">
+            {% for name in names %}
+                <option>{{name[0]}}</option>
+            {% endfor %}
+        </select> <br>
+        <label>Game name:</label>
+        <select class="input_boxes" name= "chosen_game">
+            {% for game in games %}
+                <option >{{game[0]}}</option>
+            {% endfor %}
+        </select> <br>
+        <label>Review:</label>
+        <input classs="input_boxes" type="text" name="review"> <br>
+        <label>Rating:</label>
+        <select class="input_boxes" name= "rating">
+          <option> 1 </option>
+          <option> 2 </option>
+          <option> 3 </option>
+          <option> 4 </option>
+          <option> 5 </option>
+          <option> 6 </option>
+          <option> 7 </option>
+          <option> 8 </option>
+          <option> 9 </option>
+          <option> 10 </option> 
+        </select> <br>
+          <button id="button1" type="submit"> Submit </button>
+          <button id="button2" type="button" onclick="location.href='/'">Menu</button>
+      </form>
+    </div>
+    {% if error_message %}
+      <p style="color: red;">{{ error_message }}</p>
+    {% endif %}
+    {% if success_message %}
+      <p> {{success_message}}</p>
+    {% endif %}
+      
+  </body>
 </html>

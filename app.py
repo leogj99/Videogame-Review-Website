@@ -110,9 +110,34 @@ def newGame():
     return render_template('add_game.html', error_message=error_message)
 
 
-@app.route("/add_review")
+@app.route("/add_review", methods=['GET', 'POST'])
 def newReview():
-    return render_template("add_review.html")
+    error_message = None
+    
+    list_names = database.getNames()
+    list_games = database.getGames()
+    
+    if list_names is not None and list_games is not None:
+        if request.method == 'POST':
+            name = request.form.get("chosen_name")
+            game = request.form.get("chosen_game")
+            review = request.form.get("review")
+            rating = request.form.get("rating")
+    
+            if not name or not game or not review or not rating:
+                error_message = "Please enter all fields to add a new review."
+            else:
+                database.addReview(name, game, review, rating)
+                success_message = "Review added successfully!"
+                return render_template('add_review.html', success_message=success_message, names=list_names, games=list_games)
+        
+        return render_template('add_review.html', names=list_names, games=list_games) 
+    else:
+        error_message = "Unable to retrieve names or games list."
+        return render_template('add_review.html', error_message=error_message)
+
+
+
         
         
 @app.route("/view_all_players", methods=['get', 'post'])

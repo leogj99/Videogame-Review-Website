@@ -78,27 +78,22 @@ class DB:
         self.cur = self.mysql.connection.cursor()
         
         # Find the id of the player based on the name 
-        self.cur.execute(f"SELECT PLAYER_ID FROM PLAYERS WHERE PLAYER_NAME = '{player_name}'")
-        player_id = self.cur.fetchone()
+        self.cur.execute(f"SELECT PLAYER_ID FROM PLAYERS WHERE PLAYER_FULLNAME = '{player_name}'")
+        player_id = self.cur.fetchone()[0]
         
         # Find the id of the game based on the name 
         self.cur.execute(f"SELECT GAME_ID FROM GAMES WHERE GAME_NAME = '{game_name}'")
-        game_id = self.cur.fetchone()
+        game_id = self.cur.fetchone()[0]
         
         # Try to add the new review with the inputs
         try:
-            self.cur.execute(f"INSERT INTO REVIEWS VALUES ({id}, {player_id}, {game_id}, '{review_comment})', '{rating}'")
+            self.cur.execute(f"INSERT INTO REVIEWS VALUES ({id}, {player_id}, {game_id}, '{review_comment}', '{rating}')")
             self.mysql.connection.commit()
             return True
         except Exception:
             print("Error adding review to database")
             return False
         
-        
-            
-            
-
-    
     def findMatch(self, attribute, table, input):
         if input is not None:
             self.cur = self.mysql.connection.cursor()
@@ -146,6 +141,24 @@ class DB:
         else:
             return result
 
+
+    def getNames(self):
+        self.cur = self.mysql.connection.cursor()
+        self.cur.execute("SELECT PLAYER_FULLNAME FROM PLAYERS")
+        result = self.cur.fetchall()
+        if not result:
+            return None
+        else:
+            return result
+    
+    def getGames(self):
+        self.cur = self.mysql.connection.cursor()
+        self.cur.execute("SELECT GAME_NAME FROM GAMES")
+        result = self.cur.fetchall()
+        if not result:
+            return None
+        else:
+            return result
 
     
 
