@@ -2,7 +2,7 @@
 ![Project Screenshot](flask%20website.PNG)
 
 ## Overview
-The Video Game Review Website is a dynamic web application created using HTML, CSS, and Python. It utilizes the Flask framework and MySQL database for data storage and management, and it is hosted on Heroku. The website allows users to create reviews for videogames. Users can also easily browse game reviews organized by genre and explore players who have reviewed games within specific genres.
+The Video Game Review Website is a web application created using HTML, CSS, and Python. It utilizes the Flask framework and MySQL database for data storage and management, and it is hosted on Heroku. The website allows users to create reviews for videogames. Users can also easily browse game reviews organized by genre and explore players who have reviewed games within specific genres.
 ## Accessing the Website
 You can access the website by clicking on the following link: https://leogj-database-website.herokuapp.com/
 ## How to use it
