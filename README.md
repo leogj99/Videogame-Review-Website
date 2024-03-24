@@ -4,7 +4,7 @@
 ## Overview
 The Video Game Review Website is a web application created using HTML, CSS, and Python. It utilizes the Flask framework and MySQL database for data storage and management, and it is hosted on Heroku. The website allows users to create reviews for videogames. Users can also easily browse game reviews organized by genre and explore players who have reviewed games within specific genres.
 ## Accessing the Website
-You can access the website by clicking on the following link:  https://vg-review-website-7d343a726114.herokuapp.com/
+Link:  https://vg-review-website-7d343a726114.herokuapp.com/
 ## How to use it
 ##### Step 1
 Add a player by clicking in the "Add Player" button in the menu, enter all the fields and hit "Submit". Now, go back to the main menu by hitting "Menu". If the player already exists you can skipt this step.
