@@ -5,9 +5,9 @@ from DB import DB
 #------Connection of database to flask website------
 app = Flask(__name__)        
 app.config['MYSQL_HOST'] = 'otmaa16c1i9nwrek.cbetxkdyhwsb.us-east-1.rds.amazonaws.com'
-app.config['MYSQL_USER'] = 'zh5varur7v31p6d7'
-app.config['MYSQL_PASSWORD'] = 'cxocx2arnx79l52v'
-app.config['MYSQL_DB'] = 'wmb4cccxoapzyji8'
+app.config['MYSQL_USER'] = 'rcjeu7u4y6wep5cb'
+app.config['MYSQL_PASSWORD'] = 'v5pz59rlewx4famy'
+app.config['MYSQL_DB'] = 'prhyepdzynzcutys'
 #---------------------------------------------------
 mysql = MySQL(app)
 database = DB(mysql)
